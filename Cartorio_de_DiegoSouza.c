@@ -63,7 +63,7 @@ int registrar() //função responsável por cadastrar os usuários no sistema
 
 int consultar()
 {
-	setlocale(LC_ALL, "Portuguese");
+	setlocale(LC_ALL,"Portuguese");
 	
 	char cpf[40];
 	char conteudo[200];
@@ -115,11 +115,12 @@ int main()
 	char senhadigitada[10]="a";
 	int comparacao;
 	
+	setlocale(LC_ALL,"Portuguese");
+	
 	printf("### Cartório da EBAC de Diego Souza ###\n\n");
-	
 	printf("Login de administrador!\n\n");
-	
 	printf("Digite a sua senha:\n");
+	
 	scanf("%s",senhadigitada);
 	
 	comparacao = strcmp(senhadigitada,"admin");
@@ -129,17 +130,14 @@ int main()
 		for (laco=1;laco=1;)
 		{
 			system("cls");
-			setlocale(LC_ALL, "Portuguese"); //definindo a linguagem
+			setlocale(LC_ALL,"Portuguese"); //definindo a linguagem
 	
 			printf("### Cartório da EBAC de Diego Souza ###\n\n"); //inicio do menu
-	
 			printf("Escolha a opção desejada do menu:\n\n");
-	
 			printf("\t1 - Registrar nomes\n");
 			printf("\t2 - Consultar nomes\n");
 			printf("\t3 - Deletar nomes\n");
 			printf("\t4 - Sair do sistema\n\n");
-	
 			printf("Opção: "); //fim do menu
 	
 			scanf("%d", &opcao); //armazenando a escolha do usuário
