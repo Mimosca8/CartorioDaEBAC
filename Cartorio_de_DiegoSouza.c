@@ -59,6 +59,7 @@ int registrar() //função responsável por cadastrar os usuários no sistema
 	fclose(file);
 	
 	system("pause");
+	return 0; //adicionando um retorno ao final da função
 }
 
 int consultar()
@@ -77,6 +78,8 @@ int consultar()
 	if(file == NULL)
 	{
 		printf("Não foi possível abrir o arquivo, não localizado!\n");
+		system("pause");
+		return 1; //adicionando um retorno em caso de erro
 	}
 	
 	while(fgets(conteudo, 200, file) != NULL)
@@ -86,7 +89,9 @@ int consultar()
 		printf("\n\n");
 	}
 	
+	fclose(file); //fechando o arquivo após a leitura
 	system("pause");
+	return 0; //adicionando um retorno ao final da função
 }
 
 int deletar()
@@ -96,16 +101,23 @@ int deletar()
 	printf("Digite o CPF do usuário a ser deletado:\n");
 	scanf("%s",cpf);
 	
-	remove(cpf);
-	
 	FILE *file;
 	file = fopen(cpf,"r");
 	
-	if(file == NULL)
+	if(file != NULL)
+	{
+		fclose(file); //fechando o arquivo antes de removê-lo
+		remove(cpf);
+		printf("Usuário deletado com sucesso!\n");
+	}
+	
+	else
 	{
 		printf("O usuário não se encontra no sistema!\n");
-		system("pause");
 	}
+	
+	system("pause");
+	return 0; //adicionando um retorno ao final da função
 }
 
 int main()
@@ -120,14 +132,13 @@ int main()
 	printf("### Cartório da EBAC de Diego Souza ###\n\n");
 	printf("Login de administrador!\n\n");
 	printf("Digite a sua senha:\n");
-	
 	scanf("%s",senhadigitada);
 	
 	comparacao = strcmp(senhadigitada,"admin");
 	
 	if(comparacao == 0)
 	{
-		for (laco=1;laco=1;)
+		while (laco)
 		{
 			system("cls");
 			setlocale(LC_ALL,"Portuguese"); //definindo a linguagem
@@ -139,8 +150,8 @@ int main()
 			printf("\t3 - Deletar nomes\n");
 			printf("\t4 - Sair do sistema\n\n");
 			printf("Opção: "); //fim do menu
-	
 			scanf("%d", &opcao); //armazenando a escolha do usuário
+			
 			system("cls"); //responsável por limpar a tela
 		
 			switch(opcao)
@@ -160,7 +171,6 @@ int main()
 				case 4:
 				printf("Obrigado por utilizar o sistema!\n");
 				return 0;
-				break;
 			
 				default:
 				printf("Essa opção não está disponível!\n");
@@ -169,6 +179,11 @@ int main()
 			}
 		}
 	}
+	
 	else
-	printf("Senha incorreta!");
+	{
+		printf("Senha incorreta!");
+	}
+	
+	return 0; //adicionando um retorno ao final da função
 }
